@@ -1,5 +1,3 @@
-import java.util.Random;
-
 public class BankAccount {
 
     //define bank account variables
@@ -8,10 +6,10 @@ public class BankAccount {
     private float balance;
 
     //constructor used when creating a brand new account
-    BankAccount(String accountHolderName){
+    BankAccount(String accountHolderName, int accountNumber){
 
         this.accountHolderName = accountHolderName;
-        this.accountNumber =  new Random().nextInt(1000000, 9999999);
+        this.accountNumber = accountNumber;
         this.balance = 0;
     }
 
