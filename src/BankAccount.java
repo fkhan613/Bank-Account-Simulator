@@ -7,7 +7,7 @@ public class BankAccount {
     private String accountHolderName;
     private float balance;
 
-    //constructor
+    //constructor used when creating a brand new account
     BankAccount(String accountHolderName){
 
         this.accountHolderName = accountHolderName;
@@ -15,14 +15,45 @@ public class BankAccount {
         this.balance = 0;
     }
 
+    //overloaded contructor for loading data from text file
+    BankAccount(String accountHolderName, int accountNumber, float balance){
 
-    //this method will withdraw from the account
+        this.accountHolderName = accountHolderName;
+        this.accountNumber =  accountNumber;
+        this.balance = balance;
+    }
+
+
+    //this method will withdraw from the account and return the new balance
     public float withdraw(float val){
 
-        //initialise the newBalance variable with the current balance
-        float newBalance = getBalance();
+        //initialise the currentBalance variable with the current balance
+        float currentBalance = getBalance();
 
-        return newBalance;
+        //check if the withdraw amount is greater than the current balance
+        if(val > currentBalance){
+
+            System.out.println("Error: Withdraw amount is greater than bank balance");
+            return currentBalance;
+
+        } else {
+
+            currentBalance = currentBalance - val;
+            setBalance(currentBalance);
+        }
+
+        return currentBalance;
+    }
+
+    //this method will deposit money into the account and return the new balance
+    public float deposit(float val){
+
+        //there isn't much to check here assuming all error catching will be done in the main class
+        float currentBalance = getBalance();
+        currentBalance = currentBalance + val;
+        setBalance(currentBalance);
+
+        return currentBalance;
     }
 
 
@@ -48,6 +79,8 @@ public class BankAccount {
         this.balance = val;
     }
 
-
+    public void setAccountNumber(int val){
+        this.accountNumber = val;
+    }
     
 }
