@@ -21,7 +21,7 @@ public class User {
 
         this.username = username;
         this.password = password;
-        this.accountNumber =  new Random().nextInt(1000000, 9999999); //? Maybe in the future add duplicate account number checking
+        this.accountNumber =  new Random().nextInt(1000000, 9999999); 
         this.bankAccount = new BankAccount(username, accountNumber);
     }
 
@@ -67,7 +67,18 @@ public class User {
     public void setBankAccount(BankAccount bankAccount){ 
         this.bankAccount = bankAccount; 
     }
-    
+
+    public int generateNewAccountNumber(int oldAccountNumber){
+        int newAccountNumber = new Random().nextInt(1000000, 9999999);
+
+        //I know I got a little lazy here lol
+        while(oldAccountNumber == newAccountNumber){
+             newAccountNumber = new Random().nextInt(1000000, 9999999);
+        }
+
+        return newAccountNumber;
+    }
+
     public String toString(){
         return "Username: " + this.username + "\nPassword: " + this.password + "\nAccount Number: " + this.accountNumber + "\nBank Account: " + this.bankAccount.toString() + "\n";
     }

@@ -1,6 +1,11 @@
 import java.util.Scanner;
+import java.util.HashMap;
 
 public class App {
+
+    //this loads in all the users from the databse.txt file
+    public static HashMap<Integer, User> users = DatabaseController.load();
+
     public static void main(String[] args) throws Exception {
 
         //initialise variables
@@ -71,6 +76,8 @@ public class App {
         }
 
         User user =  new User(username, password);
+        users.put(user.getAccountNumber(), user);
+
 
         System.out.println("\nYour User Information: \n" + user.toString());
 

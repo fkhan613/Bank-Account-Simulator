@@ -41,18 +41,24 @@ abstract class DatabaseController {
 
     public static User register(HashMap<Integer, User> users, String username, String password){
 
-        User user = null;
+        User user = new User(username, password);
+        User exsits = null;
 
-        //check if the username already exists
-        for (User u : users.values()) {
-            if(u.getUsername().equals(username)){
-                return user;
+        while(exsits == null){
+
+            //check if the account number in the new user already exsits
+            exsits = users.get(user.getAccountNumber());
+    
+            if (exsits != null) {
+
+                //re-generate a account number and set it to user and their bank account
+                user.setAccountNumber(user.generateNewAccountNumber(user.getAccountNumber()));
+                user.getBankAccount().setAccountNumber(user.getAccountNumber());
+                
+            } else{
+                break;
             }
         }
-
-        //if the username doesn't exist, create a new user and add it to the hashmap
-        user = new User(username, password);
-        users.put(user.getAccountNumber(), user);
 
         return user;
     }
