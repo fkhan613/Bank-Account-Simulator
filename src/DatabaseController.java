@@ -51,14 +51,23 @@ abstract class DatabaseController {
     
             if (exsits != null) {
 
+                System.out.println("Found user with same account number, re-generating");
                 //re-generate a account number and set it to user and their bank account
                 user.setAccountNumber(user.generateNewAccountNumber(user.getAccountNumber()));
                 user.getBankAccount().setAccountNumber(user.getAccountNumber());
-                
+
             } else{
                 break;
             }
         }
+
+        //add user to hashmap
+        users.put(user.getAccountNumber(), user);
+
+        //save to database
+        DatabaseController.save(users);
+
+        System.out.println("\nAccount created successfully!");
 
         return user;
     }

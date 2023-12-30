@@ -75,9 +75,9 @@ public class App {
             break;
         }
 
-        User user =  new User(username, password);
+        //add user to database and hashmap
+        User user =  DatabaseController.register(users, username, confirmedPassword);
         users.put(user.getAccountNumber(), user);
-
 
         System.out.println("\nYour User Information: \n" + user.toString());
 
