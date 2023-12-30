@@ -13,6 +13,8 @@ public class App {
         String[] validInputs; 
         User loggedInUser;
 
+
+        System.out.println(users);
         //print menu
         validInputs = printSignedOutMenu();
 
