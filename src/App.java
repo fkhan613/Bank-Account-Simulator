@@ -23,7 +23,7 @@ public class App {
             //they choose to create an account
             case "b":
 
-                user = creatAccount();
+                user = createAccount();
                 System.out.println(user.toString());
 
                 break;
@@ -35,7 +35,7 @@ public class App {
     }
 
     //this method will create a user account and store it in the db
-    private static User creatAccount(){
+    private static User createAccount(){
 
         //initialise variables
         String username = "";
