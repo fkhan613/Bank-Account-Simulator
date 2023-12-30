@@ -7,6 +7,11 @@ abstract class DatabaseController {
     public static void save(HashMap<Integer, User> users){
 
         try {
+
+            if(users.isEmpty()){
+                return;
+            }
+
             //create a new file writer
             FileWriter writer = new FileWriter("database.txt");
 
