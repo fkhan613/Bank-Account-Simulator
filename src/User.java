@@ -5,8 +5,16 @@ public class User {
     //define variables for the user class
     private String username;
     private String password; 
-    private int accountNumber;
+    private int accountNumber; //accountNumber primarily used to link user and bank account
     private BankAccount bankAccount;
+
+    //defualt constructor
+    User(){
+        this.username = "";
+        this.password = "";
+        this.accountNumber = 0;
+        this.bankAccount = new BankAccount();
+    }
 
     //constructor for brand new user
     User(String username, String password){

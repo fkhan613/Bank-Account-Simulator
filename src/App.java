@@ -6,6 +6,7 @@ public class App {
         //initialise variables
         String userChoice;
         String[] validInputs; 
+        User user;
 
         //print menu
         validInputs = printSignedOutMenu();
@@ -22,6 +23,8 @@ public class App {
             //they choose to create an account
             case "b":
 
+                user = creatAccount();
+
                 break;
             
             //they want to quit
@@ -30,7 +33,46 @@ public class App {
         }
     }
 
-    private static 
+    //this method will create a user account and store it in the db
+    private static User creatAccount(){
+
+        //initialise variables
+        String username = "";
+        String password = "";
+        String confirmedPassword = "";
+        Scanner scan = new Scanner(System.in);
+
+
+        while (true) {
+
+            //we keep re-iterating until user enters valid username
+            if(username.trim().isEmpty()){
+                System.out.print("Please enter a valid username: ");
+                username = scan.nextLine();
+                continue;
+            }
+
+            //we keep re-iterating until user enters valid password
+            if(password.trim().isEmpty()){
+                System.out.print("Please enter a valid password: ");
+                password = scan.nextLine();
+                continue;
+            }
+
+            //we keep re-iterating until user enters confirmed password correctly
+            if(!password.trim().equals(confirmedPassword.trim())){
+                System.out.print("Please confirm the password correctly: ");
+                confirmedPassword = scan.nextLine();
+                continue;
+            }
+
+            //this break statement is only reached once all valid input is entered
+            break;
+        }
+
+        return new User(username, password);
+    }
+
 
     //will print the signed out verion of the menu, and return valid inputs
     private static String[] printSignedOutMenu(){
@@ -69,8 +111,6 @@ public class App {
                 }
             }
         }
-
-        scan.close();
 
         return userInput;
     }

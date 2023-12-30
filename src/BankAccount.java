@@ -1,9 +1,18 @@
 public class BankAccount {
 
     //define bank account variables
-    private int accountNumber;
+    private int accountNumber; //accountNumber primarily used to link user and bank account
     private String accountHolderName;
     private float balance;
+
+    
+    //default constructor
+    BankAccount(){
+
+        this.accountHolderName = "";
+        this.accountNumber = 0;
+        this.balance = 0;
+    }
 
     //constructor used when creating a brand new account
     BankAccount(String accountHolderName, int accountNumber){
