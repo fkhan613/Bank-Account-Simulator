@@ -68,4 +68,7 @@ public class User {
         this.bankAccount = bankAccount; 
     }
     
+    public String toString(){
+        return "Username: " + this.username + "\nPassword: " + this.password + "\nAccount Number: " + this.accountNumber + "\nBank Account: " + this.bankAccount.toString();
+    }
 }

@@ -24,6 +24,7 @@ public class App {
             case "b":
 
                 user = creatAccount();
+                
 
                 break;
             

@@ -89,5 +89,12 @@ public class BankAccount {
     public void setAccountNumber(int val){
         this.accountNumber = val;
     }
+
+    public String toString(){
+
+        return "Account Holder Name: " + getAccountHolderName() + "\n" +
+                "Account Number: " + getAccountNumber() + "\n" +
+                "Balance: " + getBalance();
+    }
     
 }
