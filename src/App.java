@@ -6,7 +6,7 @@ public class App {
         //initialise variables
         String userChoice;
         String[] validInputs; 
-        User user;
+        User loggedInUser;
 
         //print menu
         validInputs = printSignedOutMenu();
@@ -23,9 +23,7 @@ public class App {
             //they choose to create an account
             case "b":
 
-                user = createAccount();
-                System.out.println(user.toString());
-
+                loggedInUser = createAccount();
                 break;
             
             //they want to quit
@@ -72,7 +70,11 @@ public class App {
             break;
         }
 
-        return new User(username, password);
+        User user =  new User(username, password);
+
+        System.out.println("\nYour User Information: \n" + user.toString());
+
+        return user;
     }
 
 

@@ -96,5 +96,10 @@ public class BankAccount {
                 "Account Number: " + getAccountNumber() + "\n" +
                 "Balance: " + getBalance();
     }
+
+    public String toFileString(){
+
+        return getAccountHolderName() + "," + getAccountNumber() + "," + getBalance();
+    }
     
 }
