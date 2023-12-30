@@ -3,30 +3,30 @@ import java.util.Random;
 public class User {
 
     //define variables for the user class
-    private String name; 
+    private String username; 
     private int accountNumber;
     private BankAccount bankAccount;
 
     //constructor for brand new user
-    User(String name){
+    User(String username){
 
-        this.name = name;
+        this.username = username;
         this.accountNumber =  new Random().nextInt(1000000, 9999999);
-        this.bankAccount = new BankAccount(name, accountNumber);
+        this.bankAccount = new BankAccount(username, accountNumber);
         
     }
 
     //overloaded constructor for registering user from database
-    User(String name, int accountNumber, BankAccount bankAccount){
+    User(String username, int accountNumber, BankAccount bankAccount){
 
-        this.name = name;
+        this.username = username;
         this.accountNumber = accountNumber;
         this.bankAccount = bankAccount;
     }
 
     //getters
-    public String getName(){ 
-        return this.name; 
+    public String getusername(){ 
+        return this.username; 
     }
 
     public int getAccountNumber(){ 
@@ -38,8 +38,8 @@ public class User {
     }
 
     //setters
-    public void setName(String name){ 
-        this.name = name; 
+    public void setusername(String username){ 
+        this.username = username; 
     }
 
     public void setAccountNumber(int accountNumber){ 
