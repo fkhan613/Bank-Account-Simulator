@@ -21,7 +21,7 @@ public class User {
 
         this.username = username;
         this.password = password;
-        this.accountNumber =  new Random().nextInt(1000000, 9999999);
+        this.accountNumber =  new Random().nextInt(1000000, 9999999); //? Maybe in the future add duplicate account number checking
         this.bankAccount = new BankAccount(username, accountNumber);
     }
 

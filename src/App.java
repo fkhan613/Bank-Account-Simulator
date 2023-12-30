@@ -24,7 +24,7 @@ public class App {
             case "b":
 
                 user = creatAccount();
-                
+                System.out.println(user.toString());
 
                 break;
             
@@ -47,6 +47,7 @@ public class App {
         while (true) {
 
             //we keep re-iterating until user enters valid username
+            //? Maybe in the future add in duplicate username checking
             if(username.trim().isEmpty()){
                 System.out.print("Please enter a valid username: ");
                 username = scan.nextLine();
