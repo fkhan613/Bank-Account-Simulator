@@ -103,8 +103,17 @@ public class App {
                 break;
         
             default:
+
+                System.out.println("\nGoodbye!\n");
                 break;
         }
+
+
+        //update the user in the hashmap
+        users.put(loggedInUser.getAccountNumber(), loggedInUser);
+
+        //save to database
+        DatabaseController.save(users);
 
         System.out.println("\nNew account information: \n" + loggedInUser.toString());
 
@@ -210,7 +219,7 @@ public class App {
 
         String[] validInputs = {"a", "b", "q"}; 
 
-        System.out.println("\t\tAll transactions are secure :)");
+        System.out.println("\t\t\tAll transactions are secure :)");
         System.out.println("\t\t---------------------------------------------\n");
 
         System.out.println("Please select one of the following options:\n");
