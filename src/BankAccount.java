@@ -40,13 +40,14 @@ public class BankAccount {
         //check if the withdraw amount is greater than the current balance
         if(val > currentBalance){
 
-            System.out.println("Error: Withdraw amount is greater than bank balance");
+            System.out.println("\nError: Withdraw amount is greater than bank balance\n");
             return currentBalance;
 
         } else {
 
             currentBalance = currentBalance - val;
             setBalance(currentBalance);
+            System.out.println("\nWithdrawed successfuly!\n");
         }
 
         return currentBalance;
@@ -59,6 +60,8 @@ public class BankAccount {
         float currentBalance = getBalance();
         currentBalance = currentBalance + val;
         setBalance(currentBalance);
+
+        System.out.println("\nDeposited Succesfuly!\n");
 
         return currentBalance;
     }

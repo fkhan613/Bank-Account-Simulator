@@ -95,7 +95,7 @@ abstract class DatabaseController {
                 String[] lineArray = line.split(",");
 
                 //create a new bank account object
-                BankAccount bankAccount = new BankAccount(lineArray[0], Integer.parseInt(lineArray[1]), Float.parseFloat(lineArray[2]));
+                BankAccount bankAccount = new BankAccount(lineArray[0], Integer.parseInt(lineArray[2]), Float.parseFloat(lineArray[5]));
 
                 //create a new user object
                 User user = new User(lineArray[0], lineArray[1], Integer.parseInt(lineArray[2]), bankAccount);

@@ -5,16 +5,14 @@ public class App {
 
     //this loads in all the users from the databse.txt file
     public static HashMap<Integer, User> users = DatabaseController.load();
+    public static User loggedInUser;
 
     public static void main(String[] args) throws Exception {
 
         //initialise variables
         String userChoice;
         String[] validInputs; 
-        User loggedInUser;
 
-
-        System.out.println(users);
         //print menu
         validInputs = printSignedOutMenu();
 
@@ -23,8 +21,8 @@ public class App {
         switch (userChoice) {
             //they choose to login
             case "a":
-
                 
+                loggedInUser = login();
                 break;
 
             //they choose to create an account
@@ -37,6 +35,128 @@ public class App {
             default:
                 break;
         }
+
+        //if we reach this point, initializing a flag for the game loop is appropriate
+        Boolean continueTransactions = true;
+
+        //this will be the main game loop
+        while (continueTransactions) {
+
+            validInputs = printSignedInMenu();
+
+            userChoice = handleMenuInput(validInputs);
+
+            switch (userChoice) {
+                
+                //user wants to deposit
+                case "a":
+
+                    performTransaction("deposit");
+                    break;
+
+                //user wants to withdraw
+                case "b":
+
+                    performTransaction("withdraw");
+                    break;
+                
+                //quit
+                default:
+                    continueTransactions = false;
+                    break;
+            }
+
+            
+        }
+    }
+
+    private static void performTransaction(String type){
+
+        Boolean validInput = false;
+        float amount = 0.0f;
+
+        //loop until user enters valid input
+        while (!validInput) {
+
+            try{
+
+                System.out.print("PLease enter the amount you want to " + type + ": ");
+                amount = new Scanner(System.in).nextFloat();
+
+                validInput = true;
+
+            }catch(Exception e){
+                System.out.println("Please only enter numerical values and try again.\n");
+                validInput = false;
+            }
+        }
+
+        switch (type) {
+            case "deposit":
+
+                loggedInUser.getBankAccount().deposit(amount);
+                break;
+            
+            case "withdraw":
+
+                loggedInUser.getBankAccount().withdraw(amount);
+                break;
+        
+            default:
+                break;
+        }
+
+        System.out.println("\nNew account information: \n" + loggedInUser.toString());
+
+    }
+
+    //this method will login the user
+    private static User login(){
+
+        int accountNumber = 0;
+        String password = "";
+        Boolean loggedIn = false;
+        User loggedInUser = null;
+
+        while(!loggedIn){
+
+            Boolean validInput = false;
+
+            while (!validInput) {
+                
+                try{
+    
+                    System.out.print("Please enter your account number: ");
+                    accountNumber = new Scanner(System.in).nextInt();
+    
+                    System.out.print("\nPlease enter your password: ");
+                    password = new Scanner(System.in).nextLine();
+
+                    //if we got here, it's valid input
+                    validInput = true;
+    
+                }catch(Exception e){
+    
+                    System.out.println("Please only enter numbers for your account number and try again.");
+                }
+            }
+
+            //attempt to login
+            loggedInUser = DatabaseController.login(users, accountNumber, password);
+
+            if (loggedInUser == null) {
+
+                System.out.println("\nIncorrect account number or password, please try again.");
+
+            } else{
+
+                System.out.println("\nLogged in successfuly!");
+                loggedIn = true;
+            }
+
+        }
+
+        return loggedInUser;
     }
 
     //this method will create a user account and store it in the db
@@ -86,6 +206,19 @@ public class App {
         return user;
     }
 
+    private static String[] printSignedInMenu(){
+
+        String[] validInputs = {"a", "b", "q"}; 
+
+        System.out.println("\t\tAll transactions are secure :)");
+        System.out.println("\t\t---------------------------------------------\n");
+
+        System.out.println("Please select one of the following options:\n");
+        System.out.println("a. Deposit \nb. Withdraw \nq. Log Out\n");
+        
+        return validInputs;
+    }
+
 
     //will print the signed out verion of the menu, and return valid inputs
     private static String[] printSignedOutMenu(){
@@ -125,6 +258,6 @@ public class App {
             }
         }
 
-        return userInput;
+        return userInput.toLowerCase();
     }
 }
